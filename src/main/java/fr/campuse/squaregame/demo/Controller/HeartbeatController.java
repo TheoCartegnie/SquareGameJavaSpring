@@ -1,16 +1,16 @@
 package fr.campuse.squaregame.demo.Controller;
 
-import fr.campuse.squaregame.demo.HeartbeatSensor;
+import fr.campuse.squaregame.demo.RandomHeartbeat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HeartbeatController {
+public class HeartbeatController{
 
   @Autowired
-  private HeartbeatSensor heartBeatSensor;
-
+  private RandomHeartbeat heartBeatSensor;
 
   @GetMapping("/heartbeat")
   public int getHeartbeat()
@@ -21,19 +21,9 @@ public class HeartbeatController {
   @GetMapping("/heartbeats")
   public int getRandomBeat()
   {
-        return this.heartBeatSensor.getRandomBeat();
+     return this.heartBeatSensor.getRandomBeat();
   }
 
-    @GetMapping("/sensors")
-    public int getSensors()
-    {
-        HeartbeatSensor [] sensors = new HeartbeatSensor[5];
 
-    }
 
-//  @GetMapping("/heartbeat/{id}")
-//  public int getSensorsByID()
-//  {
-//
-//  }
 }
