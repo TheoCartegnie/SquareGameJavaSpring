@@ -15,6 +15,7 @@ public class SensorController{
     @Autowired
     SensorService services;
 
+
     @PutMapping("/heartbeats/put/{id}")
     public void setIdbyID(@PathVariable("id") int ID)
     {
@@ -40,4 +41,6 @@ public class SensorController{
         Sensor sensor = new RandomHeartbeat(new Random());
         this.services.addSensor(sensor);
     }
+
+
 }

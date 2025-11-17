@@ -4,9 +4,9 @@ import fr.campuse.squaregame.demo.Controller.SensorController;
 import fr.campuse.squaregame.demo.RandomHeartbeat;
 import fr.campuse.squaregame.demo.Sensor;
 import fr.campuse.squaregame.demo.repository.SensorRepo;
+import fr.campuse.squaregame.demo.Exception.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -27,13 +27,24 @@ public class SensorService implements SensorRepo {
 
     @Override
     public Sensor getbyID(int ID) {
-      return controller.get(ID);
+
+        return controller.stream()
+                .filter(sensor -> sensor.getID() != 0)
+                .findFirst()
+                .orElseThrow(() -> new ProductNotFoundException(ID));
+        //return controller.get(ID);
     }
 
     @Override
     public void deleteSensor(Sensor sensor)
     {
-        controller.remove(sensor);
+        try {
+            controller.remove(sensor);
+        }
+        catch (ProductNotFoundException e)
+        {
+            System.out.println("The item does not exist in the list.");
+        }
     }
 
     @Override
