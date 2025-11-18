@@ -1,0 +1,11 @@
+fr/campus/squaregame/demo/model/sensor/Sensor.class
+fr/campus/squaregame/demo/model/gameCatalog/GameCatalogImp.class
+fr/campus/squaregame/demo/Repository/SensorRepo.class
+fr/campus/squaregame/demo/controller/sensor/SensorController.class
+fr/campus/squaregame/demo/controller/sensor/HeartbeatController.class
+fr/campus/squaregame/demo/exception/ProductNotFoundException.class
+fr/campus/squaregame/demo/controller/controller/GameDataController.class
+fr/campus/squaregame/demo/Config/AppConfig.class
+fr/campus/squaregame/demo/model/gameCatalog/GameCatalog.class
+fr/campus/squaregame/demo/exception/NullProductExceptionHandler.class
+fr/campus/squaregame/demo/model/sensor/RandomHeartbeat.class
