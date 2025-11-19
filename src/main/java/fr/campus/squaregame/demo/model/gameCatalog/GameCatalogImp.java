@@ -25,17 +25,36 @@ public class GameCatalogImp implements GameCatalog {
     }
 
 
+    public void addTicTacToe(int numberPlayer, int boardSize)
+    {
+        ticTactToeFactory.createGame(numberPlayer,boardSize);
+        identifiers.add(ticTactToeFactory.getGameFactoryId());
+    }
+
+    public void addTaquin(int numberPlayer, int boardSize)
+    {
+        taquinFActory.createGame(numberPlayer,boardSize);
+        identifiers.add(taquinFActory.getGameFactoryId());
+    }
+
+    public void addfourGame(int numberPlayer, int boardSize)
+    {
+        fourGameFactory.createGame(numberPlayer,boardSize);
+        identifiers.add(fourGameFactory.getGameFactoryId());
+    }
+
+
     @Override
     public void addNewGame(int numberPlayer, int boardSize)
     {
-        ticTactToeFactory.createGame(numberPlayer,boardSize);
-        taquinFActory.createGame(numberPlayer,boardSize);
-        fourGameFactory.createGame(numberPlayer,boardSize);
+
+
+
+       // fourGameFactory.createGame(numberPlayer,boardSize);
     }
 
     @Override
     public List<String> getGameIdentifiers() {
-        init();
         return identifiers;
     }
 

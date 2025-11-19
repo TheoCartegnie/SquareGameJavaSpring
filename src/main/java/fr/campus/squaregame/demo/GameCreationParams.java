@@ -10,4 +10,11 @@ public class GameCreationParams {
     public Integer playerNumber;
     public Integer boardSize;
 
+    public GameCreationParams(){};
+    public GameCreationParams(int playerNumber, int boardsize)
+    {
+        this.playerNumber = playerNumber;
+        this.boardSize = boardsize;
+    }
+
 }

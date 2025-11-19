@@ -1,7 +1,6 @@
-package fr.campus.squaregame.demo.controller.controller;
+package fr.campus.squaregame.demo.controller.gamecontroller;
 
 
-import fr.campus.squaregame.demo.model.gameCatalog.GameCatalog;
 import fr.campus.squaregame.demo.model.gameCatalog.GameCatalogImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

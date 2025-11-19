@@ -1,26 +1,45 @@
 package fr.campus.squaregame.demo.services;
 
 import fr.campus.squaregame.demo.model.gameCatalog.GameCatalogImp;
-import fr.le_campus_numerique.square_games.engine.taquin.TaquinGame;
-import fr.le_campus_numerique.square_games.engine.tictactoe.TicTacToeGame;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
-public class GameServiceImpl {
+public class GameServiceImpl implements GameService {
 
     @Autowired
     public GameCatalogImp gameCatalog;
-    @Autowired
-    private TicTacToeGame ticTacToeGameFirst;
-    @Autowired
-    private TaquinGame taquinGame;
 
 
+   @Override
    public void addNewGame(int playerNumber, int boardSize)
    {
        gameCatalog.addNewGame(playerNumber,boardSize);
    }
+
+    @Override
+    public void addTaquin(int playerNumber, int boardSize) {
+        gameCatalog.addTaquin(playerNumber,boardSize);
+    }
+
+    @Override
+    public void addTicTacToe(int playerNumber, int boardSize) {
+        gameCatalog.addTicTacToe(playerNumber,boardSize);
+    }
+
+    @Override
+    public void addFourGame(int playerNumber, int boardSize) {
+        gameCatalog.addfourGame(playerNumber,boardSize);
+    }
+
+    @Override
+    public List<String> getGamesID() {
+      return gameCatalog.getGameIdentifiers();
+    }
 
 
 }
