@@ -10,4 +10,5 @@ public interface GameService {
     void addTicTacToe(int playerNumber, int boardSize);
     void addFourGame(int playerNumber, int boardSize);
     List<String> getGamesID();
+    public String getGameByID(int ID);
 }

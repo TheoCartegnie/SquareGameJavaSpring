@@ -41,5 +41,10 @@ public class GameServiceImpl implements GameService {
       return gameCatalog.getGameIdentifiers();
     }
 
+    @Override
+    public String getGameByID(int ID) {
+        return gameCatalog.getGameIdentifiers().get(ID);
+    }
+
 
 }
