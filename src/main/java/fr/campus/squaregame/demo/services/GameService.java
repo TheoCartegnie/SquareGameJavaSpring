@@ -1,14 +1,14 @@
 package fr.campus.squaregame.demo.services;
 
 
+import fr.campus.squaregame.demo.GameCreationRespons;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalInt;
 
 public interface GameService {
-    void addNewGame(int playerNumber, int boardSize);
-    void addTaquin(int playerNumber, int boardSize);
-    void addTicTacToe(int playerNumber, int boardSize);
-    void addFourGame(int playerNumber, int boardSize);
+
     List<String> getGamesID();
-    public String getGameByID(int ID);
+    String getGameByID(int ID);
 }

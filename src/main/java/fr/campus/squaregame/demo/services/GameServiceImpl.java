@@ -1,50 +1,27 @@
 package fr.campus.squaregame.demo.services;
 
+import fr.campus.squaregame.demo.GameCreationRespons;
 import fr.campus.squaregame.demo.model.gameCatalog.GameCatalogImp;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalInt;
 
 @Service
-public class GameServiceImpl implements GameService {
+public class GameServiceImpl {
 
     @Autowired
     public GameCatalogImp gameCatalog;
 
-
-   @Override
-   public void addNewGame(int playerNumber, int boardSize)
-   {
-       gameCatalog.addNewGame(playerNumber,boardSize);
-   }
-
-    @Override
-    public void addTaquin(int playerNumber, int boardSize) {
-        gameCatalog.addTaquin(playerNumber,boardSize);
-    }
-
-    @Override
-    public void addTicTacToe(int playerNumber, int boardSize) {
-        gameCatalog.addTicTacToe(playerNumber,boardSize);
-    }
-
-    @Override
-    public void addFourGame(int playerNumber, int boardSize) {
-        gameCatalog.addfourGame(playerNumber,boardSize);
-    }
-
-    @Override
-    public List<String> getGamesID() {
-      return gameCatalog.getGameIdentifiers();
-    }
-
-    @Override
-    public String getGameByID(int ID) {
-        return gameCatalog.getGameIdentifiers().get(ID);
+    public String getName(Local l) {
+        return gameCatalog.getGameIdentifiers().get(0);
     }
 
 
+    public GameCreationRespons createGame(String gameName,int playerCount, int boardSize) {
+        return gameCatalog.addGame(gameName,playerCount,boardSize);
+    }
 }

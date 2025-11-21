@@ -1,8 +1,10 @@
 package fr.campus.squaregame.demo.controller.gamecontroller;
 
-import fr.campus.squaregame.demo.GameCreationParams;
-import fr.campus.squaregame.demo.services.GameService;
+import fr.campus.squaregame.demo.GameCreationRequest;
+import fr.campus.squaregame.demo.GameCreationRespons;
+import fr.campus.squaregame.demo.services.GameServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -11,34 +13,20 @@ import java.util.UUID;
 public class GameController {
 
     @Autowired
-    GameService gameService;
+    GameServiceImpl gameService;
 
-    @PostMapping("/games/tictactoe")
-    public String createTicTacToeGame(@RequestBody GameCreationParams params) {
-        gameService.addTicTacToe(params.playerNumber,params.boardSize);
+    @PostMapping("/games")
+    public String createGame(@RequestBody GameCreationRespons params) {
+        gameService.createGame(params.name,params.boardSize, params.playerNumber );
         return UUID.randomUUID().toString();
     }
 
-    @PostMapping("/games/taquin")
-    public String createTaquinGame(@RequestBody GameCreationParams params) {
-        gameService.addTaquin(params.playerNumber,params.boardSize);
-        return UUID.randomUUID().toString();
+    @PostMapping("/games/create")
+    public ResponseEntity<GameCreationRespons> creatGame(@RequestBody GameCreationRequest request)
+    {
+       GameCreationRespons respons = gameService.createGame(request.name,request.playerNumber,request.boardSize);
+       return ResponseEntity.ok(respons);
     }
 
-    @PostMapping("/games/fourGame")
-    public String createFourGameGame(@RequestBody GameCreationParams params) {
-        gameService.addFourGame(params.playerNumber,params.boardSize);
-        return UUID.randomUUID().toString();
-    }
-
-    @GetMapping("/games/{gameId}")
-    public Object getGame(@PathVariable int gameId) {
-        return gameService.getGameByID(gameId);
-    }
-
-    @GetMapping("/games/list")
-    public Object getGames() {
-        return gameService.getGamesID();
-    }
 
 }

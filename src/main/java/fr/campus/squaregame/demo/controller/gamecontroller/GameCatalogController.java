@@ -14,7 +14,7 @@ public class GameCatalogController {
     @Autowired
     private GameCatalogImp gameCatalog;
 
-    @GetMapping("/games/list")
+    @GetMapping("/catalogue/list")
     public List<String> getIDs()
     {
         return gameCatalog.getGameIdentifiers();
