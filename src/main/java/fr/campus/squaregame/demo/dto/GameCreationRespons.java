@@ -1,4 +1,4 @@
-package fr.campus.squaregame.demo;
+package fr.campus.squaregame.demo.dto;
 
 public class GameCreationRespons {
 

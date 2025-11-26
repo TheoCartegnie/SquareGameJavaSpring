@@ -1,12 +1,12 @@
 package fr.campus.squaregame.demo.controller.gamecontroller;
 
-import fr.campus.squaregame.demo.GameCreationRequest;
-import fr.campus.squaregame.demo.GameCreationRespons;
+import fr.campus.squaregame.demo.dto.*;
 import fr.campus.squaregame.demo.services.GameServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -28,5 +28,17 @@ public class GameController {
        return ResponseEntity.ok(respons);
     }
 
+    @GetMapping("/games/list")
+    public ResponseEntity<List<GameListRespons>> getGames(@RequestBody GameListRequest request)
+    {
+       List<GameListRespons> respons = gameService.getGamesID();
+       return ResponseEntity.ok(respons);
+    }
 
+    @DeleteMapping("/games/delete")
+    public ResponseEntity<GameDeleteReponse> deleteGame(@RequestBody GameDeleteRequest request)
+    {
+        GameDeleteReponse respons = gameService.deleteGame(request.ID);
+        return ResponseEntity.ok(respons);
+    }
 }

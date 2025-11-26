@@ -1,6 +1,4 @@
-package fr.campus.squaregame.demo;
-
-import java.util.OptionalInt;
+package fr.campus.squaregame.demo.dto;
 
 public class GameCreationRequest<G> {
     public String name;

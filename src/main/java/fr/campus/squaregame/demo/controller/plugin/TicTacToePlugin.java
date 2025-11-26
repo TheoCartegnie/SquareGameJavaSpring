@@ -1,25 +1,30 @@
 package fr.campus.squaregame.demo.controller.plugin;
 
-import fr.campus.squaregame.demo.GameCreationRespons;
+import fr.campus.squaregame.demo.dto.GameCreationRespons;
 import fr.campus.squaregame.demo.services.GamePlugin;
 import fr.le_campus_numerique.square_games.engine.tictactoe.TicTacToeGameFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Locale;
-import java.util.OptionalInt;
 
 @Component
-public class TicTacToePlugin implements GamePlugin {
+public class TicTacToePlugin extends GamePluginImpl {
 
 
-    TicTacToeGameFactory factory;
+
+    @Value("${game.ticTacToePlugin.defaultplayerCount}")
+    protected int defautPlayerCount;
+
+
+    @Value("${game.ticTacToePlugin.defaultBoardSize}")
+    protected int defautBoardSize;
 
     @Autowired
     public TicTacToePlugin()
     {
-       factory = new TicTacToeGameFactory();
+        factory = new TicTacToeGameFactory();
     }
 
     @Override
@@ -27,16 +32,25 @@ public class TicTacToePlugin implements GamePlugin {
         return "TicTacToe";
     }
 
-    @Override
-    public GameCreationRespons createGame(int playerCount, int boardSize)
+    public GameCreationRespons addGame(int playerCount, int boardSize)
     {
-       var game = factory.createGame(playerCount,boardSize);
+        if(playerCount == 0)
+        {
+            playerCount = this.defautPlayerCount;
+        }
+        if(boardSize == 0)
+        {
+            boardSize = this.defautBoardSize;
+        }
 
-        GameCreationRespons request = new GameCreationRespons();
-        request.boardSize = game.getBoardSize();
-        request.playerNumber = game.getPlayerIds().size();
+        return CreateGame(playerCount,boardSize);
+        //return request;
+    }
 
-        return request;
+    @Override
+    public GameCreationRespons CreateGame(int playerCount, int boardSize)
+    {
+        return super.CreateGame(playerCount,boardSize);
     }
 
 

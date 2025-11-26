@@ -1,23 +1,27 @@
 package fr.campus.squaregame.demo.controller.plugin;
 
-import fr.campus.squaregame.demo.GameCreationRespons;
+import fr.campus.squaregame.demo.dto.GameCreationRespons;
 import fr.campus.squaregame.demo.services.GamePlugin;
 import fr.le_campus_numerique.square_games.engine.taquin.TaquinGameFactory;
-import fr.le_campus_numerique.square_games.engine.tictactoe.TicTacToeGameFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Locale;
 
 @Component
-public class TaquinPlugin implements GamePlugin {
+public class TaquinPlugin  extends GamePluginImpl {
 
-    TaquinGameFactory factory;
+    @Value("${game.taquinPlugin.defaultplayerCount}")
+    int defautPlayerCount;
+
+    @Value("${game.taquinPlugin.defaultBoardSize}")
+    int defautBoardSize;
 
     @Autowired
-    void TaquinPlugin()
+    public TaquinPlugin()
     {
-        factory =  new TaquinGameFactory();
+        factory = new TaquinGameFactory();
     }
 
     @Override
@@ -26,13 +30,21 @@ public class TaquinPlugin implements GamePlugin {
     }
 
     @Override
-    public GameCreationRespons createGame(int playerCount, int boardSize) {
-        var game = factory.createGame(playerCount,boardSize);
+    public GameCreationRespons addGame(int playerCount, int boardSize)
+    {
+        if(playerCount == 0)
+        {
+            playerCount = this.defautPlayerCount;
+        }
+        if(boardSize == 0)
+        {
+            boardSize = this.defautBoardSize;
+        }
 
-        GameCreationRespons request = new GameCreationRespons();
-        request.boardSize =  game.getBoardSize();
-        request.playerNumber = game.getPlayerIds().size();
 
-        return request;
+
+        return super.CreateGame(playerCount,boardSize);
+        //return request;
     }
+
 }

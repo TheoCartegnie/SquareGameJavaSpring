@@ -1,14 +1,12 @@
 package fr.campus.squaregame.demo.services;
 
 
-import fr.campus.squaregame.demo.GameCreationRespons;
+import fr.campus.squaregame.demo.dto.GameListRespons;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.OptionalInt;
 
 public interface GameService {
 
-    List<String> getGamesID();
+    List<GameListRespons> getGamesID();
     String getGameByID(int ID);
 }
